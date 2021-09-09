@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { initializeApp } from 'firebase/app'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
+import { TaskList } from './components/TaskList'
 
 const app = initializeApp({
   apiKey: 'AIzaSyC2qbwDkItmmqskNEIzqxF5ZtJbnN9Dais',
@@ -46,9 +47,12 @@ export default function App() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col justify-center pt-4">
       {user ? (
-        <button onClick={signOut}>sign out</button>
+        <>
+          <button onClick={signOut}>sign out</button>
+          <TaskList db={db} />
+        </>
       ) : (
         <button onClick={signIn}>sign in</button>
       )}
