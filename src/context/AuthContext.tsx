@@ -1,26 +1,20 @@
-import React, { useState, useEffect, createContext, useContext } from 'react'
-import { collection } from 'firebase/firestore'
+import React, { useState, useEffect, useContext, createContext } from 'react'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { CollectionReference, Firestore } from '@firebase/firestore'
 import { User } from '@firebase/auth'
-import { db, auth } from '../config/firebase'
+import { auth } from '../config/firebase'
 
 interface Value {
-  db: Firestore
-  taskRef: CollectionReference
+  user: User | null
   signIn: () => void
   signOut: () => void
-  user: User | null
 }
 
-const FirestoreContext = createContext<Value>({} as Value)
-export const useFirestore = () => {
-  return useContext(FirestoreContext)
+const AuthContext = createContext<Value>({} as Value)
+export const useAuth = () => {
+  return useContext(AuthContext)
 }
 
-export const FirestoreProvider: React.FC<Children> = ({ children }) => {
-  const taskRef = collection(db, 'tasks')
-
+export const AuthProvider: React.FC<Children> = ({ children }) => {
   const [user, setUser] = useState(() => auth.currentUser)
 
   useEffect(() => {
@@ -50,17 +44,11 @@ export const FirestoreProvider: React.FC<Children> = ({ children }) => {
     }
   }
 
-  const value: Value = {
-    db,
-    taskRef,
+  const value = {
+    user,
     signIn,
     signOut,
-    user,
   }
 
-  return (
-    <FirestoreContext.Provider value={value}>
-      {children}
-    </FirestoreContext.Provider>
-  )
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

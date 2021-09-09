@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { addDoc, serverTimestamp } from 'firebase/firestore'
-import { useFirestore } from '../context/FirebaseContext'
+import { useFirestore } from '../context/FirestoreContext'
 
 export const AddTask: React.FC = () => {
   const [newTask, setNewTask] = useState<string>('')
@@ -12,6 +12,7 @@ export const AddTask: React.FC = () => {
     const payload = {
       description: newTask,
       dateAdded: serverTimestamp(),
+      completed: false,
     }
 
     await addDoc(taskRef, payload)
