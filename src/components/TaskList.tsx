@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { onSnapshot } from 'firebase/firestore'
-import { useFirestore } from '../context/FirestoreContext'
+import { useFirestore } from '../context/FirebaseContext'
 
 export const TaskList: React.FC = () => {
   const [taskList, setTaskList] = useState<TaskSchema[]>([])
@@ -27,7 +27,7 @@ export const TaskList: React.FC = () => {
   return (
     <div>
       {taskList.map((task) => (
-        <Task task={task} />
+        <Task key={task.id} task={task} />
       ))}
     </div>
   )
@@ -37,7 +37,6 @@ const Task: React.FC<TaskProps> = ({ task }) => {
   return (
     <div>
       <h1>{task.description}</h1>
-      <p>{task.id}</p>
     </div>
   )
 }
