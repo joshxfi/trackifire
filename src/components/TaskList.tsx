@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Firestore } from '@firebase/firestore'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { onSnapshot } from 'firebase/firestore'
+import { useFirestore } from '../context/FirestoreContext'
 
-interface TaskListProps {
-  db: Firestore
-}
-
-export const TaskList: React.FC<TaskListProps> = ({ db }) => {
+export const TaskList: React.FC = () => {
   const [taskList, setTaskList] = useState<TaskSchema[]>([])
-  const taskRef = collection(db, 'tasks')
+  const { db, taskRef } = useFirestore()
 
   // fetch data from firestore db
   useEffect(() => {

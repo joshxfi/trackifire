@@ -4,3 +4,7 @@ interface TaskSchema {
   completed: boolean
   dateAdded: Date
 }
+
+interface Children {
+  children: React.ReactNode;
+}
