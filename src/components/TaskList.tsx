@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { onSnapshot } from 'firebase/firestore'
+import { onSnapshot, doc, deleteDoc } from 'firebase/firestore'
 import { useFirestore } from '../context/FirestoreContext'
 
 export const TaskList: React.FC = () => {
@@ -34,9 +34,16 @@ export const TaskList: React.FC = () => {
 }
 
 const Task: React.FC<TaskProps> = ({ task }) => {
+  const { db } = useFirestore()
+
+  const removeTask = async () => {
+    await deleteDoc(doc(db, 'tasks', task.id))
+  }
+
   return (
     <div>
       <h1>{task.description}</h1>
+      <button onClick={removeTask}>remove task</button>
     </div>
   )
 }
