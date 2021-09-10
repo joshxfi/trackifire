@@ -4,17 +4,24 @@ import { FirestoreProvider } from './context/FirestoreContext'
 import { AddTask } from './components/AddTask'
 import { useAuth } from './context/AuthContext'
 import { Navbar } from './components/Navbar'
+import { Authorize } from './components/Authorize'
 
 export default function App() {
+  const { user } = useAuth()
+
   return (
     <div className="flex flex-col justify-center items-center pt-4">
-      <main className="w-[80%]">
-        <Navbar />
-        <FirestoreProvider>
-          <AddTask />
-          <TaskList />
-        </FirestoreProvider>
-      </main>
+      {user ? (
+        <main className="w-[80%]">
+          <Navbar />
+          <FirestoreProvider>
+            <AddTask />
+            <TaskList />
+          </FirestoreProvider>
+        </main>
+      ) : (
+        <Authorize />
+      )}
     </div>
   )
 }

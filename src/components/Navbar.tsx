@@ -1,8 +1,8 @@
 import React from 'react'
 import { useAuth } from '../context/AuthContext'
 
-export const Navbar = () => {
-  const { user, signIn, signOut } = useAuth()
+export const Navbar: React.FC = () => {
+  const { user, signOut } = useAuth()
   const { photoURL } = user || {}
 
   return (
@@ -11,11 +11,7 @@ export const Navbar = () => {
         {photoURL && <img src={`${photoURL}`} alt="user profile photo" />}
       </div>
       <div>
-        {user ? (
-          <button onClick={signOut}>sign out</button>
-        ) : (
-          <button onClick={signIn}>sign in</button>
-        )}
+        <button onClick={signOut}>sign out</button>
       </div>
     </nav>
   )
