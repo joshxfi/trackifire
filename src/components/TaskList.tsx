@@ -42,7 +42,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
   }
 
   return (
-    <div className="flex justify-between text-lg w-full border-b-2 border-gray-300 mb-8 pb-4">
+    <div className="flex justify-between text-lg w-full border-b-2 border-gray-300 mb-8 pb-4 group checkHover">
       <div className="w-full flex">
         <button
           className="hover:text-red-800 color-trans border-r-2 border-gray-300 pr-4"
@@ -52,7 +52,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
         </button>
         <p className="px-4">{task.description}</p>
       </div>
-      <button className="hover:text-green-700 color-trans border-gray-300">
+      <button className="hover:text-green-700 color-trans border-gray-300 opacity-0 check">
         <FaCheck />
       </button>
     </div>
