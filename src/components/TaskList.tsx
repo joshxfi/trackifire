@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { onSnapshot, doc, deleteDoc } from 'firebase/firestore'
 import { useFirestore } from '../context/FirestoreContext'
+import { FaTimes } from 'react-icons/fa'
 
 export const TaskList: React.FC = () => {
   const [taskList, setTaskList] = useState<TaskSchema[]>([])
@@ -41,9 +42,14 @@ const Task: React.FC<TaskProps> = ({ task }) => {
   }
 
   return (
-    <div>
-      <h1>{task.description}</h1>
-      <button onClick={removeTask}>remove task</button>
+    <div className="flex justify-between text-lg w-full border-b-2 border-gray-300 mb-8 pb-4">
+      <p className="px-4">{task.description}</p>
+      <button
+        className="hover:text-red-800 transition-colors duration-150"
+        onClick={removeTask}
+      >
+        <FaTimes />
+      </button>
     </div>
   )
 }

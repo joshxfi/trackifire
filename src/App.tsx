@@ -10,13 +10,13 @@ export default function App() {
   return (
     <div className="flex flex-col justify-center items-center pt-4">
       {user ? (
-        <>
+        <main className="w-[80%]">
           <button onClick={signOut}>sign out</button>
           <FirestoreProvider>
             <AddTask />
             <TaskList />
           </FirestoreProvider>
-        </>
+        </main>
       ) : (
         <button onClick={signIn}>sign in</button>
       )}
