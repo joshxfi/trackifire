@@ -35,7 +35,7 @@ export const AddTask: React.FC = () => {
     >
       <div className="flex justify-between border-b-2 border-gray-300 pb-4">
         <input
-          className="bg-gray-200 text-gray-900 w-full px-4 text-lg outline-none focus:border-gray-400"
+          className="bg-gray-200 text-gray-900 w-full pr-4 text-lg outline-none focus:border-gray-400"
           type="text"
           value={newTask}
           placeholder="add a new task"

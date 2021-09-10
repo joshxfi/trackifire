@@ -10,7 +10,7 @@ export default function App() {
   const { user } = useAuth()
 
   return (
-    <div className="flex flex-col justify-center items-center pt-4 min-h-screen">
+    <div className="flex flex-col items-center pt-4 min-h-screen">
       {user ? (
         <main className="w-[80%]">
           <Navbar />
