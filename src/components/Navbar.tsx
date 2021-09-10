@@ -6,7 +6,7 @@ export const Navbar = () => {
   const { photoURL } = user || {}
 
   return (
-    <nav className="flex justify-between text-sm items-center pb-4">
+    <nav className="flex justify-between text-sm items-center">
       <div className="rounded-full overflow-hidden inline-block h-[40px] w-[40px] mr-2">
         {photoURL && <img src={`${photoURL}`} alt="user profile photo" />}
       </div>
