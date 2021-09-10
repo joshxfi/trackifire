@@ -52,7 +52,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
         </button>
         <p className="px-4">{task.description}</p>
       </div>
-      <button className="hover:text-green-700 color-trans">
+      <button className="hover:text-green-700 color-trans border-gray-300">
         <FaCheck />
       </button>
     </div>
