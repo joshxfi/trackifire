@@ -5,6 +5,7 @@ import { auth } from '../config/firebase'
 
 interface Value {
   user: User | null
+  uid: string | null | undefined
   signIn: () => void
   signOut: () => void
 }
@@ -16,6 +17,8 @@ export const useAuth = () => {
 
 export const AuthProvider: React.FC<Children> = ({ children }) => {
   const [user, setUser] = useState(() => auth.currentUser)
+
+  const { uid } = user || {}
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
@@ -44,8 +47,9 @@ export const AuthProvider: React.FC<Children> = ({ children }) => {
     }
   }
 
-  const value = {
+  const value: Value = {
     user,
+    uid,
     signIn,
     signOut,
   }

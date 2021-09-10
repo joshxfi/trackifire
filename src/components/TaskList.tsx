@@ -7,14 +7,13 @@ import { useAuth } from '../context/AuthContext'
 export const TaskList: React.FC = () => {
   const [taskList, setTaskList] = useState<TaskSchema[]>([])
   const { db, taskRef } = useFirestore()
-  const { user } = useAuth()
-  const { uid } = user || {}
+  const { uid } = useAuth()
 
   // fetch data from firestore db
   useEffect(() => {
     if (db) {
       const unsub = onSnapshot(taskRef, (docs) => {
-        let fetchTask: any[] = []
+        let fetchTask: TaskSchema[] | any[] = []
 
         docs.forEach((doc) => {
           let task = { ...doc.data(), id: doc.id }

@@ -2,15 +2,12 @@ import React, { useState } from 'react'
 import { addDoc, serverTimestamp } from 'firebase/firestore'
 import { useFirestore } from '../context/FirestoreContext'
 import { useAuth } from '../context/AuthContext'
-import { User } from '@firebase/auth'
 import { FaPlus } from 'react-icons/fa'
 
 export const AddTask: React.FC = () => {
   const [newTask, setNewTask] = useState<string>('')
   const { taskRef } = useFirestore()
-  const { user } = useAuth()
-
-  const { uid } = user || {}
+  const { uid } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
