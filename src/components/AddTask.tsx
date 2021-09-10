@@ -3,7 +3,7 @@ import { addDoc, serverTimestamp } from 'firebase/firestore'
 import { useFirestore } from '../context/FirestoreContext'
 import { useAuth } from '../context/AuthContext'
 import { User } from '@firebase/auth'
-import { MdAdd } from 'react-icons/md'
+import { FaPlus } from 'react-icons/fa'
 
 export const AddTask: React.FC = () => {
   const [newTask, setNewTask] = useState<string>('')
@@ -28,23 +28,23 @@ export const AddTask: React.FC = () => {
 
   return (
     <form
-      className="my-8 flex"
+      className="my-8"
       onSubmit={handleSubmit}
       spellCheck="false"
       autoComplete="off"
     >
-      <input
-        className="bg-gray-300 text-gray-900 w-full rounded-xl mr-1 px-4 text-lg h-2rem outline-none border-2 focus:border-gray-400"
-        type="text"
-        value={newTask}
-        onChange={(e) => setNewTask(e.target.value)}
-      />
-      <button
-        className="h-[3rem] px-[1rem] rounded-xl bg-green-600 text-gray-200"
-        type="submit"
-      >
-        <MdAdd className="text-xl" />
-      </button>
+      <div className="flex justify-between border-b-2 border-gray-300 pb-4">
+        <input
+          className="bg-gray-200 text-gray-900 w-full px-4 text-lg outline-none focus:border-gray-400"
+          type="text"
+          value={newTask}
+          placeholder="add a new task"
+          onChange={(e) => setNewTask(e.target.value)}
+        />
+        <button className="hover:text-green-700 color-trans" type="submit">
+          <FaPlus />
+        </button>
+      </div>
     </form>
   )
 }
