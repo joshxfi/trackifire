@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { onSnapshot, doc, deleteDoc } from 'firebase/firestore'
 import { useFirestore } from '../context/FirestoreContext'
 import { BsTrash, BsCheck } from 'react-icons/bs'
+import { useAuth } from '../context/AuthContext'
 
 export const TaskList: React.FC = () => {
   const [taskList, setTaskList] = useState<TaskSchema[]>([])
   const { db, taskRef } = useFirestore()
+  const { user } = useAuth()
+  const { uid } = user || {}
 
   // fetch data from firestore db
   useEffect(() => {
@@ -27,9 +30,11 @@ export const TaskList: React.FC = () => {
 
   return (
     <div>
-      {taskList.map((task) => (
-        <Task key={task.id} task={task} />
-      ))}
+      {taskList
+        .filter((task) => task.uid === uid)
+        .map((task) => (
+          <Task key={task.id} task={task} />
+        ))}
     </div>
   )
 }
