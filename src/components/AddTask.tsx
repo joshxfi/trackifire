@@ -10,7 +10,7 @@ export const AddTask: React.FC = () => {
   const { taskRef } = useFirestore()
   const { user } = useAuth()
 
-  const { uid } = user as User
+  const { uid } = user || {}
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
