@@ -6,7 +6,7 @@ export const Navbar: React.FC = () => {
   const { photoURL } = user || {}
 
   return (
-    <nav className="flex  py-2 items-center text-sm shadow-lg w-screen left-0 fixed">
+    <nav className="flex py-2 bg-gray-200 items-center text-sm shadow-lg w-screen left-0 fixed z-10">
       <div className="flex justify-between items-center w-[80%] mx-auto">
         <div className="rounded-full overflow-hidden inline-block h-[40px] w-[40px] mr-2">
           {photoURL && <img src={`${photoURL}`} alt="user profile photo" />}

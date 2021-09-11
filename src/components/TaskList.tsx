@@ -1,5 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { query, orderBy, onSnapshot, doc, deleteDoc } from 'firebase/firestore'
+import React, { useState, useEffect, useRef } from 'react'
+import {
+  query,
+  limit,
+  orderBy,
+  onSnapshot,
+  doc,
+  deleteDoc,
+  updateDoc,
+} from 'firebase/firestore'
 import { useFirestore } from '../context/FirestoreContext'
 import { BsTrash, BsCheck } from 'react-icons/bs'
 import { useAuth } from '../context/AuthContext'
@@ -12,7 +20,7 @@ export const TaskList: React.FC = () => {
   // fetch data from firestore db
   useEffect(() => {
     if (db) {
-      const queryTask = query(taskRef, orderBy('dateAdded'))
+      const queryTask = query(taskRef, orderBy('dateAdded'), limit(30))
       const unsub = onSnapshot(queryTask, (docs) => {
         let fetchTask: TaskSchema[] | any[] = []
 
@@ -41,9 +49,24 @@ export const TaskList: React.FC = () => {
 
 const Task: React.FC<TaskProps> = ({ task }) => {
   const { db } = useFirestore()
+  const [completed, setCompleted] = useState<boolean>(true)
+  const completedRef = useRef<HTMLParagraphElement>(null)
+  const completedTaskRef = doc(db, 'tasks', task.id)
+
+  const updateCompleted = async () => {
+    await updateDoc(completedTaskRef, { completed })
+  }
 
   const removeTask = async () => {
     await deleteDoc(doc(db, 'tasks', task.id))
+  }
+
+  const handleComplete = () => {
+    setCompleted(!completed)
+    updateCompleted()
+    completedRef.current!.style.textDecoration = completed
+      ? 'line-through'
+      : 'none'
   }
 
   return (
@@ -55,9 +78,14 @@ const Task: React.FC<TaskProps> = ({ task }) => {
         >
           <BsTrash />
         </button>
-        <p className="px-4">{task.description}</p>
+        <p ref={completedRef} className="px-4">
+          {task.description}
+        </p>
       </div>
-      <button className="hover:text-green-700 color-trans border-gray-300 opacity-0 check">
+      <button
+        onClick={handleComplete}
+        className="hover:text-green-700 color-trans border-gray-300 opacity-0 check"
+      >
         <BsCheck className="text-2xl" />
       </button>
     </div>
