@@ -9,5 +9,5 @@
 - CRUD 
   - [x] Create
   - [x] Read
-  - [ ] Update
+  - [x] Update
   - [x] Delete
