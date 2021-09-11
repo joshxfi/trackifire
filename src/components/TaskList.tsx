@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { onSnapshot, doc, deleteDoc } from 'firebase/firestore'
+import { query, orderBy, onSnapshot, doc, deleteDoc } from 'firebase/firestore'
 import { useFirestore } from '../context/FirestoreContext'
 import { BsTrash, BsCheck } from 'react-icons/bs'
 import { useAuth } from '../context/AuthContext'
@@ -12,7 +12,8 @@ export const TaskList: React.FC = () => {
   // fetch data from firestore db
   useEffect(() => {
     if (db) {
-      const unsub = onSnapshot(taskRef, (docs) => {
+      const queryTask = query(taskRef, orderBy('dateAdded'))
+      const unsub = onSnapshot(queryTask, (docs) => {
         let fetchTask: TaskSchema[] | any[] = []
 
         docs.forEach((doc) => {

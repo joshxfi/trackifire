@@ -25,7 +25,7 @@ export const AddTask: React.FC = () => {
 
   return (
     <form
-      className="my-8"
+      className="mb-8 mt-18 mt-24"
       onSubmit={handleSubmit}
       spellCheck="false"
       autoComplete="off"
