@@ -30,9 +30,9 @@ export const AddTask: React.FC = () => {
       spellCheck="false"
       autoComplete="off"
     >
-      <div className="flex justify-between border-b-2 border-gray-300 pb-4">
+      <div className="flex justify-between border-b-2 border-gray-500 pb-4">
         <input
-          className="bg-gray-200 text-gray-900 w-full pr-4 text-lg outline-none focus:border-gray-400"
+          className="bg-[#EAE3C9] text-gray-900 w-full pr-4 text-lg outline-none placeholder-gray-500"
           type="text"
           value={newTask}
           placeholder="add a new task"

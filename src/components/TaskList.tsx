@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   query,
   limit,
@@ -62,10 +62,10 @@ const Task: React.FC<TaskProps> = ({ task }) => {
   }
 
   return (
-    <div className="flex justify-between text-lg w-full border-b-2 border-gray-300 mb-8 pb-4 group checkHover">
+    <div className="flex justify-between text-lg w-full border-b-2 border-gray-500 mb-8 pb-4 group checkHover">
       <div className="w-full flex">
         <button
-          className="hover:text-red-800 color-trans border-r-2 border-gray-300 pr-4"
+          className="hover:text-red-800 color-trans border-r-2 border-gray-500 pr-4"
           onClick={removeTask}
         >
           <BsTrash />
@@ -79,7 +79,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
       </div>
       <button
         onClick={handleComplete}
-        className="hover:text-green-700 color-trans border-gray-300 opacity-0 check"
+        className="hover:text-green-700 color-trans opacity-0 check"
       >
         <BsCheck className="text-2xl" />
       </button>
