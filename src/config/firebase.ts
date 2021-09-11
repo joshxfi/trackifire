@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const app = initializeApp({
-  apiKey: 'AIzaSyC2qbwDkItmmqskNEIzqxF5ZtJbnN9Dais',
+  apiKey: import.meta.env.VITE_FIREBASE,
   authDomain: 'hello-world-e6c48.firebaseapp.com',
   projectId: 'hello-world-e6c48',
   storageBucket: 'hello-world-e6c48.appspot.com',

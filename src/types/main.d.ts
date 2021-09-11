@@ -1,3 +1,7 @@
+interface ImportMetaEnv {
+  VITE_FIREBASE: string;
+}
+
 interface TaskSchema {
   id: string;
   uid: string;
