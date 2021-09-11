@@ -7,7 +7,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav className="flex py-3 bg-gray-900 items-center text-sm shadow-md w-screen left-0 fixed z-10">
-      <div className="flex justify-between items-center w-[80%] mx-auto">
+      <div className="flex justify-between items-center w-[80%] max-w-screen-md mx-auto">
         <div className="rounded-full overflow-hidden inline-block h-[40px] w-[40px] mr-2">
           {photoURL && <img src={`${photoURL}`} alt="user profile photo" />}
         </div>

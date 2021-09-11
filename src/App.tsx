@@ -12,7 +12,7 @@ export default function App() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       {user ? (
-        <main className="w-[80%]">
+        <main className="w-[80%] max-w-screen-md">
           <Navbar />
           <FirestoreProvider>
             <AddTask />
