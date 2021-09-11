@@ -1,5 +1,5 @@
 interface ImportMetaEnv {
-  VITE_VERCEL_FIREBASE: string;
+  VITE_FIREBASE: string;
 }
 
 interface TaskSchema {
