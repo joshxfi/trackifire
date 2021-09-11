@@ -50,23 +50,15 @@ export const TaskList: React.FC = () => {
 const Task: React.FC<TaskProps> = ({ task }) => {
   const { db } = useFirestore()
   const [completed, setCompleted] = useState<boolean>(true)
-  const completedRef = useRef<HTMLParagraphElement>(null)
   const completedTaskRef = doc(db, 'tasks', task.id)
-
-  const updateCompleted = async () => {
-    await updateDoc(completedTaskRef, { completed })
-  }
 
   const removeTask = async () => {
     await deleteDoc(doc(db, 'tasks', task.id))
   }
 
-  const handleComplete = () => {
+  const handleComplete = async () => {
     setCompleted(!completed)
-    updateCompleted()
-    completedRef.current!.style.textDecoration = completed
-      ? 'line-through'
-      : 'none'
+    await updateDoc(completedTaskRef, { completed })
   }
 
   return (
@@ -78,7 +70,10 @@ const Task: React.FC<TaskProps> = ({ task }) => {
         >
           <BsTrash />
         </button>
-        <p ref={completedRef} className="px-4">
+        <p
+          style={{ textDecoration: task.completed ? 'line-through' : '' }}
+          className="px-4"
+        >
           {task.description}
         </p>
       </div>
