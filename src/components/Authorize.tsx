@@ -17,7 +17,7 @@ export const Authorize: React.FC = () => {
         className="mt-8 flex items-center bg-gray-900 text-gray-200 p-2 px-16 rounded-md cursor-pointer hover:bg-gray-800 color-trans lg:text-2xl"
         onClick={signIn}
       >
-        <p className="mr-2">sign in with google</p>
+        <p className="mr-2 text-sm lg:text-lg">sign in with google</p>
         <FcGoogle />
       </div>
     </div>
